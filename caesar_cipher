@@ -1,0 +1,43 @@
+def caesar_cipher(string, shift)
+  downcased_alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  upcased_alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  result = ''
+  string.chars.each do |char|
+    if downcased_alphabet.include?(char)
+      downcased_alphabet.each_with_index do |letter, index|
+        if char == letter
+          result << downcased_alphabet[index + shift < 26 ? index + shift : index + shift - 26]
+        end
+      end
+    elsif upcased_alphabet.include?(char)
+      upcased_alphabet.each_with_index do |letter, index|
+        if char == letter
+          result << upcased_alphabet[index + shift < 26 ? index + shift : index + shift - 26]
+        end
+      end
+    else
+      result << char
+    end
+  end
+  puts result
+end
+
+def caesar_cipher(string, shift)
+  alphabet = 'abcdefghijklmnopqrstuvwxyz'
+  result = ''
+  string.each_char do |char|
+    index = alphabet.index(char.downcase)
+    if index.nil?
+      result << char
+    else
+      shifted_index = (index + shift) % 26
+      result << alphabet[shifted_index]
+    end
+  end
+  result
+end
+
+caesar_cipher("What a string!", 5)
+=> "Bmfy f xywnsl!"
+
+
